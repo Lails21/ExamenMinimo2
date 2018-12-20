@@ -9,10 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 public interface APIRest {
-    String BASE_URL = "https://do.diba.cat/api/dataset/municipis/format/json/pag-ini/1/pag-fi/11";
+    String BASE_URL = "https://do.diba.cat/api/dataset/municipis/format/json/pag-ini/1/pag-fi/";
 
-    @GET()
-    Call<Element> getData();
+    @GET("11")
+    Call<Cities> getData();
 
     static APIRest createAPIRest() {
         Gson gson = new GsonBuilder()

@@ -2,6 +2,7 @@ package dsa.eetac.upc.edu.examenminimo2;
 
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +25,18 @@ public class Recycler extends RecyclerView.Adapter<Recycler.ViewHolder> {
         private ImageView cityImageView;
         private TextView cityTextView;
         private TextView codipostalTextView;
-        public LinearLayout linearLayout;
+        private ConstraintLayout constraintLayout;
 
         public ViewHolder(View v) {
             super(v);
             cityImageView=v.findViewById(R.id.imageView);
             cityTextView=v.findViewById(R.id.citytext);
             codipostalTextView=v.findViewById(R.id.codipostaltext);
-            linearLayout = v.findViewById(R.id.linearLayout);
+            constraintLayout = v.findViewById(R.id.constraintLayout);
         }
     }
 
-    public void addCities (List<Element> elementList){
+    public void addElements(List<Element> elementList) {
         data.addAll(elementList);
         notifyDataSetChanged();
     }
@@ -56,7 +57,7 @@ public class Recycler extends RecyclerView.Adapter<Recycler.ViewHolder> {
         Element elementdata = ((Element)data.get(position));
         holder.cityTextView.setText(elementdata.getMunicipiNom());
         holder.codipostalTextView.setText(elementdata.getIne());
-        //Picasso.with(context).load(elementdata.getMunicipiEscut().into(holder.cityImageView));
+        Picasso.with(context).load(elementdata.getMunicipiEscut()).into(holder.cityImageView);
     }
 
     @Override

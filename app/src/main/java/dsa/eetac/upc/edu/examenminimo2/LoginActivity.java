@@ -41,7 +41,6 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -334,15 +333,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-            final SharedPreferences sharedPref =
-                    PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putBoolean("registered", true);
-            editor.putString("username", this.mEmail);
-            editor.putString("password", this.mPassword);
-            editor.apply();
 
             if (success) {
+                final SharedPreferences sharedPref =
+                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("registered", true);
+                editor.putString("username", this.mEmail);
+                editor.putString("password", this.mPassword);
+                editor.apply();
+
                 newIntent();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
